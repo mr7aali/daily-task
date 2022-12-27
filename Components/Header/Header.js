@@ -29,32 +29,51 @@ function DrawerAppBar(props) {
 
     const drawer = (
         <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
-            <Typography variant="h6" sx={{ my: 2 }}>
+            <Typography variant="h6" sx={{ my: 2 ,display:'none'}}>
                 MUI
             </Typography>
             <Divider />
             <List>
-           
-                 
-                    <ListItem  disablePadding>
-                        <ListItemButton sx={{ textAlign: 'center' }}>
-                         
-                            <ListItemText>Add Task</ListItemText>                     
-                        </ListItemButton>
-                    </ListItem>
-                    <ListItem  disablePadding>
-                        <ListItemButton sx={{ textAlign: 'center' }}>
-                          
-                            <ListItemText>My Task</ListItemText>                     
-                        </ListItemButton>
-                    </ListItem>
-                    <ListItem  disablePadding>
-                        <ListItemButton sx={{ textAlign: 'center' }}>
-                    
-                            <ListItemText>Compiled Task</ListItemText>                     
-                        </ListItemButton>
-                    </ListItem>
-              
+
+
+                <ListItem disablePadding>
+                    <ListItemButton sx={{ textAlign: 'center' }}>
+
+                        <ListItemText>Add Task</ListItemText>
+                    </ListItemButton>
+                </ListItem>
+                <ListItem disablePadding>
+                    <ListItemButton sx={{ textAlign: 'center' }}>
+
+                        <ListItemText>My Task</ListItemText>
+                    </ListItemButton>
+                </ListItem>
+
+                <ListItem disablePadding>
+                    <ListItemButton sx={{ textAlign: 'center' }}>
+
+                        <ListItemText>Compiled Task</ListItemText>
+                    </ListItemButton>
+                </ListItem>
+
+
+                <ListItem disablePadding>
+                    <ListItemButton sx={{ textAlign: 'center' }}>
+
+                        <ListItemText>Login</ListItemText>
+                    </ListItemButton>
+                </ListItem>
+                <ListItem disablePadding>
+                    <ListItemButton sx={{ textAlign: 'center' }}>
+
+                        <ListItemText>Register</ListItemText>
+                    </ListItemButton>
+                </ListItem>
+
+
+
+
+
             </List>
         </Box>
     );
@@ -79,23 +98,45 @@ function DrawerAppBar(props) {
                         <Typography
                             variant="h6"
                             component="div"
-                            sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
+                            sx={{ flexGrow: 1, display: { xs: 'none', sm: 'node',md:'block' } }}
                         >
                             MUI
                         </Typography>
                         <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
 
-                           
-                                <Link href='/' >
-                                    <Button sx={{ color: '#fff' }}>Add Task</Button>                                  
-                                </Link>
-                                <Link href='mytask' >
-                                    <Button sx={{ color: '#fff' }}>My Task</Button>                                  
-                                </Link>
-                                <Link href='d' >
-                                    <Button sx={{ color: '#fff' }}>Complited Task</Button>                                  
-                                </Link>
+
+                           <Link href='/'  >
+                                <Button sx={{ color: '#fff',fontSize:'18px' }}>Add Task</Button>
+                            </Link>
+                            <Link href='mytask' >
+                                <Button sx={{ color: '#fff',fontSize:'18px'  }}>My Task</Button>
+                            </Link>
                             
+                            <Link href='d' >
+                                <Button sx={{ color: '#fff',fontSize:'18px'  }}>Complited Task</Button>
+                            </Link> 
+
+
+                            <Link href='/HandleUser/Login' >
+                                <Button sx={{ 
+                                    color: '#fff',
+                                    fontSize:'18px',
+                                    marginLeft:{
+                                        xs:'0px',
+                                        sm:'0px',
+                                        md:'0px',
+                                        lg:'150px',
+                                        xl:'150px'
+                                    }
+                             }}>Login</Button>
+                            </Link> 
+                            
+                            <Link href='/HandleUser/Register' >
+                                <Button sx={{ color: '#fff',fontSize:'18px'  }}>Register</Button>
+                            </Link> 
+                    
+                            
+
                         </Box>
                     </Toolbar>
                 </Container>

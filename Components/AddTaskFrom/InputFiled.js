@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 
 
 export default function InputFiled({ setOpen }) {
-    const { register, handleSubmit, watch, formState: { errors } } = useForm();
+    const { register, handleSubmit, formState: { errors } } = useForm();
     const handleModal = data => console.log(data);
     return (
 
