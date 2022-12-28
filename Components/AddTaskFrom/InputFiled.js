@@ -14,7 +14,12 @@ export default function InputFiled({ setOpen }) {
         <Box>
             <Box class="min-h-screen py-6 flex flex-col justify-center sm:py-12">
                 <Box class="relative py-3 sm:max-w-xl sm:mx-auto">
-                    <Box class="relative px-4 py-10 bg-white mx-8 md:mx-0 shadow rounded-3xl sm:p-10">
+                    {/* relative px-4 py-10 bg-white mx-8 md:mx-0 shadow rounded-3xl sm:p-10 */}
+                    <Box sx={{
+                        borderRadius: '15px',
+                        padding: '120px 50px',
+                        position: 'relative'
+                    }} class="bg-white">
                         <Box class="max-w-md mx-auto">
 
 
@@ -24,8 +29,8 @@ export default function InputFiled({ setOpen }) {
                                 <Box class="h-14 w-14 bg-yellow-200 rounded-full flex flex-shrink-0 justify-center items-center text-yellow-500 text-2xl font-mono">i</Box>
                                 {/* block pl-2 font-semibold text-xl self-start text-gray-700 */}
                                 <Box class="">
-                                {/* class="leading-relaxed" */}
-                                    <Typography sx={{fontSize:'40px'}} variant="h2" >Create your task</Typography>
+                                    {/* class="leading-relaxed" */}
+                                    <Typography sx={{ fontSize: '40px' }} variant="h2" >Create your task</Typography>
                                     <Typography variant="p" sx={{}} >Lorem ipsum, dolor sit amet consectetur adipisicing elit.</Typography>
                                 </Box>
                             </Box>
@@ -41,7 +46,7 @@ export default function InputFiled({ setOpen }) {
                                             {/* <label class="leading-loose">Task Title</label>
                                         <input type="text" class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600" placeholder="Event title" /> */}
                                             <TextField
-                                                
+
                                                 id="outlined-textarea"
                                                 label="Task Title"
                                                 placeholder="Task Title"
@@ -109,32 +114,32 @@ export default function InputFiled({ setOpen }) {
 
 
                                         {/* class="flex justify-center items-center w-full text-gray-900 px-4 py-3 rounded-md focus:outline-none" */}
-                                        <Button 
-                                        
-                                        sx={{
-                                            display: 'flex',
-                                            justifyContent: 'center',
-                                            alignItems: 'center',
-                                            width: '100%',
-                                            borderRadius: '15px'
-                                        }}
-                                        onClick={() => 
-                                            
-                                            setOpen(false)}>
+                                        <Button
+
+                                            sx={{
+                                                display: 'flex',
+                                                justifyContent: 'center',
+                                                alignItems: 'center',
+                                                width: '100%',
+                                                borderRadius: '15px'
+                                            }}
+                                            onClick={() =>
+
+                                                setOpen(false)}>
                                             Cancel
                                         </Button>
                                         {/* class="bg-blue-500 flex justify-center items-center w-full text-white px-4 py-3 rounded-md focus:outline-none" */}
-                                        <Button type="submit" 
-                                        style={{ backgroundColor: '#3B82F6',color:'FFFFFF' }}
-                                           sx={{
-                                            display: 'flex',
-                                            justifyContent: 'center',
-                                            alignItems: 'center',
-                                            width: '100%',
-                                            borderRadius: '15px',
-                                            bgcolor:'#3B82F6',                               
-                                        }}
-                                        
+                                        <Button type="submit"
+                                            style={{ backgroundColor: '#3B82F6', color: 'FFFFFF' }}
+                                            sx={{
+                                                display: 'flex',
+                                                justifyContent: 'center',
+                                                alignItems: 'center',
+                                                width: '100%',
+                                                borderRadius: '15px',
+                                                bgcolor: '#3B82F6',
+                                            }}
+
                                         >
                                             Create
                                         </Button>
@@ -153,7 +158,7 @@ export default function InputFiled({ setOpen }) {
         </Box>
 
 
-        
+
 
 
 
