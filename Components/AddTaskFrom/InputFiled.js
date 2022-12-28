@@ -95,6 +95,10 @@ export default function InputFiled({ setOpen }) {
                                             />
                                         </Box>
                                     </Box>
+
+
+
+
                                     <Box sx={{
 
                                         display: 'flex',
@@ -102,25 +106,19 @@ export default function InputFiled({ setOpen }) {
                                     }}>
 
 
-
-                                        <Button onClick={() => setOpen(false)} class="flex justify-center items-center w-full text-gray-900 px-4 py-3 rounded-md focus:outline-none">
+                                        {/* class="flex justify-center items-center w-full text-gray-900 px-4 py-3 rounded-md focus:outline-none" */}
+                                        <Button onClick={() => setOpen(false)}>
                                             Cancel
                                         </Button>
-                                        <Button type="submit" class="bg-blue-500 flex justify-center items-center w-full text-white px-4 py-3 rounded-md focus:outline-none">
+                                        {/* class="bg-blue-500 flex justify-center items-center w-full text-white px-4 py-3 rounded-md focus:outline-none" */}
+                                        <Button type="submit" >
                                             Create
                                         </Button>
 
-
-
-
-
-
-
-
-
-
-
                                     </Box>
+
+
+
                                 </Box>
                             </form>
 
