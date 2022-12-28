@@ -59,7 +59,7 @@ const ModalFrom = ({ setOpen, open }) => {
                 </div>
             </Modal>
 
-             <InputFiled></InputFiled>
+     
         </Box>
     );
 };
