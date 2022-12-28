@@ -1,6 +1,6 @@
 import { Box, Button, TextField, Typography } from "@mui/material";
 import { useForm } from "react-hook-form";
-
+import AcUnitIcon from '@mui/icons-material/AcUnit';
 
 
 
@@ -21,7 +21,15 @@ export default function InputFiled({ setOpen }) {
 
 
                             <Box class="flex items-center space-x-5">
-                                <Box class="h-14 w-14 bg-yellow-200 rounded-full flex flex-shrink-0 justify-center items-center text-yellow-500 text-2xl font-mono">i</Box>
+                            {/* h-14 w-14 bg-yellow-200 rounded-full flex flex-shrink-0 justify-center items-center text-yellow-500 text-2xl font-mono */}
+                                <Box style={{
+                          
+                                    
+                                    borderRadius:'50%',
+                                    display:'flex',
+                                    alignItems:'center',
+                                    justifyContent:'center'
+                                    }} > <AcUnitIcon  sx={{ fontSize: 90 }} /> </Box>
                                 {/* block pl-2 font-semibold text-xl self-start text-gray-700 */}
                                 <Box class="">
                                 {/* class="leading-relaxed" */}
@@ -102,8 +110,8 @@ export default function InputFiled({ setOpen }) {
 
 
                                      <Box sx={{display:'flex', justifyContent:'space-between' }}>
-                                     <TextField type='datetime-local' label="Start Time" id="standard-basic"  focused variant="standard" />
-                                     <TextField type='datetime-local' id="standard-basic" label="End Time" variant="standard"  focused />
+                                     <TextField {...register("StartTime")} type='datetime-local' label="Start Time" id="standard-basic"  focused variant="standard" />
+                                     <TextField {...register("EndTime")} type='datetime-local' id="standard-basic" label="End Time" variant="standard"  focused />
                                      </Box>
 
 
@@ -150,7 +158,8 @@ export default function InputFiled({ setOpen }) {
 
                                     <Box sx={{
 
-                                        display: 'flex',
+                                        display: 'grid',
+                                        gridTemplateColumns:'1fr 1fr'
 
                                     }}>
 
@@ -158,13 +167,15 @@ export default function InputFiled({ setOpen }) {
                                         {/* class="flex justify-center items-center w-full text-gray-900 px-4 py-3 rounded-md focus:outline-none" */}
                                         <Button 
                                         
-                                        sx={{
-                                            display: 'flex',
-                                            justifyContent: 'center',
-                                            alignItems: 'center',
-                                            width: '100%',
-                                            borderRadius: '15px'
-                                        }}
+                                        // sx={{
+                                        //     display: 'flex',
+                                        //     justifyContent: 'center',
+                                        //     alignItems: 'center',
+                                        //     width: '100%',
+                                        //     borderRadius: '15px'
+                                        // }}
+
+                                        sx={{margin:'0 auto',color:'red'}}
                                         onClick={() => 
                                             
                                             setOpen(false)}>
@@ -173,15 +184,15 @@ export default function InputFiled({ setOpen }) {
                                         {/* class="bg-blue-500 flex justify-center items-center w-full text-white px-4 py-3 rounded-md focus:outline-none" */}
                                         <Button type="submit" 
                                         style={{ backgroundColor: '#3B82F6',color:'FFFFFF' }}
-                                           sx={{
-                                            display: 'flex',
-                                            justifyContent: 'center',
-                                            alignItems: 'center',
-                                            width: '100%',
-                                            borderRadius: '15px',
-                                            bgcolor:'#3B82F6',                               
-                                        }}
-                                        
+                                        //    sx={{
+                                        //     display: 'flex',
+                                        //     justifyContent: 'center',
+                                        //     alignItems: 'center',
+                                        //     width: '100%',
+                                        //     borderRadius: '15px',
+                                        //     bgcolor:'#3B82F6',                               
+                                        // }}
+                                        sx={{margin:'0 auto',color:'white' , height:'50px',width:'200px'}}
                                         >
                                             Create
                                         </Button>
