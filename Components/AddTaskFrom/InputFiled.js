@@ -11,7 +11,7 @@ export default function InputFiled({ setOpen }) {
     return (
 
 
-        <Box>
+        <div>
             <div class="min-h-screen py-6 flex flex-col justify-center sm:py-12">
                 <div class="relative py-3 sm:max-w-xl sm:mx-auto">
                     <div class="relative px-4 py-10 bg-white mx-8 md:mx-0 shadow rounded-3xl sm:p-10">
@@ -107,7 +107,7 @@ export default function InputFiled({ setOpen }) {
                     </div>
                 </div>
             </div>
-        </Box>
+        </div>
 
     );
 }
