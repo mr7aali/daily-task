@@ -107,11 +107,34 @@ export default function InputFiled({ setOpen }) {
 
 
                                         {/* class="flex justify-center items-center w-full text-gray-900 px-4 py-3 rounded-md focus:outline-none" */}
-                                        <Button onClick={() => setOpen(false)}>
+                                        <Button 
+                                        
+                                        sx={{
+                                            display: 'flex',
+                                            justifyContent: 'center',
+                                            alignItems: 'center',
+                                            width: '100%',
+                                            borderRadius: '15px'
+                                        }}
+                                        onClick={() => 
+                                            
+                                            setOpen(false)}>
                                             Cancel
                                         </Button>
                                         {/* class="bg-blue-500 flex justify-center items-center w-full text-white px-4 py-3 rounded-md focus:outline-none" */}
-                                        <Button type="submit" >
+                                        <Button type="submit" 
+                                           sx={{
+                                            display: 'flex',
+                                            justifyContent: 'center',
+                                            alignItems: 'center',
+                                            width: '100%',
+                                            borderRadius: '15px',
+                                            background:'#3B82F6',
+                                            border:'1px solid red'
+                                            
+                                        }}
+                                        class="bg-blue-500 flex justify-center items-center w-full text-white px-4 py-3 rounded-md focus:outline-none"
+                                        >
                                             Create
                                         </Button>
 
