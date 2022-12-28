@@ -1,4 +1,4 @@
-import { Box, Button, TextField } from "@mui/material";
+import { Box, Button, TextField, Typography } from "@mui/material";
 import { useForm } from "react-hook-form";
 
 
@@ -22,9 +22,11 @@ export default function InputFiled({ setOpen }) {
 
                             <Box class="flex items-center space-x-5">
                                 <Box class="h-14 w-14 bg-yellow-200 rounded-full flex flex-shrink-0 justify-center items-center text-yellow-500 text-2xl font-mono">i</Box>
-                                <Box class="block pl-2 font-semibold text-xl self-start text-gray-700">
-                                    <h2 class="leading-relaxed">Create your task</h2>
-                                    <p class="text-sm text-gray-500 font-normal leading-relaxed">Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+                                {/* block pl-2 font-semibold text-xl self-start text-gray-700 */}
+                                <Box class="">
+                                {/* class="leading-relaxed" */}
+                                    <Typography sx={{fontSize:'40px'}} variant="h2" >Create your task</Typography>
+                                    <Typography variant="p" sx={{}} >Lorem ipsum, dolor sit amet consectetur adipisicing elit.</Typography>
                                 </Box>
                             </Box>
 
@@ -39,7 +41,7 @@ export default function InputFiled({ setOpen }) {
                                             {/* <label class="leading-loose">Task Title</label>
                                         <input type="text" class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600" placeholder="Event title" /> */}
                                             <TextField
-
+                                                
                                                 id="outlined-textarea"
                                                 label="Task Title"
                                                 placeholder="Task Title"
