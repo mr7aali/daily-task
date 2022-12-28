@@ -14,22 +14,27 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import { Container, Link } from '@mui/material';
+import { Container } from '@mui/material';
+import Link from 'next/link';
+import { AuthContext } from '../contexts/AuthProvider';
 
 const drawerWidth = 240;
 
 
 function DrawerAppBar(props) {
+
+    const { user,LogOut } = React.useContext(AuthContext);
+    console.log(user?.uid);
     const { window } = props;
     const [mobileOpen, setMobileOpen] = React.useState(false);
 
     const handleDrawerToggle = () => {
         setMobileOpen((prevState) => !prevState);
     };
-
+    
     const drawer = (
         <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
-            <Typography variant="h6" sx={{ my: 2 ,display:'none'}}>
+            <Typography variant="h6" sx={{ my: 2, display: 'none' }}>
                 MUI
             </Typography>
             <Divider />
@@ -57,18 +62,34 @@ function DrawerAppBar(props) {
                 </ListItem>
 
 
-                <ListItem disablePadding>
-                    <ListItemButton sx={{ textAlign: 'center' }}>
 
-                        <ListItemText>Login</ListItemText>
-                    </ListItemButton>
-                </ListItem>
-                <ListItem disablePadding>
-                    <ListItemButton sx={{ textAlign: 'center' }}>
 
-                        <ListItemText>Register</ListItemText>
-                    </ListItemButton>
-                </ListItem>
+                {user?.uid ?
+                    <ListItem disablePadding>
+                        <ListItemButton sx={{ textAlign: 'center' }}>
+
+                            <ListItemText>Log Out</ListItemText>
+                        </ListItemButton>
+                    </ListItem>
+                    :
+                    <>
+                        <ListItem disablePadding>
+                            <ListItemButton sx={{ textAlign: 'center' }}>
+
+                                <ListItemText>Login</ListItemText>
+                            </ListItemButton>
+                        </ListItem>
+                        <ListItem disablePadding>
+                            <ListItemButton sx={{ textAlign: 'center' }}>
+
+                                <ListItemText>Register</ListItemText>
+                            </ListItemButton>
+                        </ListItem>
+                    </>
+
+
+                }
+
 
 
 
@@ -98,44 +119,68 @@ function DrawerAppBar(props) {
                         <Typography
                             variant="h6"
                             component="div"
-                            sx={{ flexGrow: 1, display: { xs: 'none', sm: 'node',md:'block' } }}
+                            sx={{ flexGrow: 1, display: { xs: 'none', sm: 'node', md: 'block' } }}
                         >
                             MUI
                         </Typography>
                         <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
 
 
-                           <Link href='/'  >
-                                <Button sx={{ color: '#fff',fontSize:'18px' }}>Add Task</Button>
+                            <Link href='/'  >
+                                <Button sx={{ color: '#fff', fontSize: '18px' }}>Add Task</Button>
                             </Link>
                             <Link href='mytask' >
-                                <Button sx={{ color: '#fff',fontSize:'18px'  }}>My Task</Button>
+                                <Button sx={{ color: '#fff', fontSize: '18px' }}>My Task</Button>
                             </Link>
-                            
+
                             <Link href='d' >
-                                <Button sx={{ color: '#fff',fontSize:'18px'  }}>Complited Task</Button>
-                            </Link> 
+                                <Button sx={{ color: '#fff', fontSize: '18px' }}>Complited Task</Button>
+                            </Link>
 
 
-                            <Link href='/HandleUser/Login' >
-                                <Button sx={{ 
+                            {
+                                user?.uid ?
+
+                                <Link href={'/'} >
+                                <Button 
+                             
+                                onClick={LogOut}
+                                sx={{
                                     color: '#fff',
-                                    fontSize:'18px',
-                                    marginLeft:{
-                                        xs:'0px',
-                                        sm:'0px',
-                                        md:'0px',
-                                        lg:'150px',
-                                        xl:'150px'
+                                    fontSize: '18px',
+                                    marginLeft: {
+                                        xs: '0px',
+                                        sm: '0px',
+                                        md: '0px',
+                                        lg: '150px',
+                                        xl: '150px'
                                     }
-                             }}>Login</Button>
-                            </Link> 
-                            
-                            <Link href='/HandleUser/Register' >
-                                <Button sx={{ color: '#fff',fontSize:'18px'  }}>Register</Button>
-                            </Link> 
-                    
-                            
+                                }}>Logout</Button>
+                            </Link>
+
+    :
+                                    <>
+
+
+                                        <Link href='/HandleUser/Login' >
+                                            <Button sx={{
+                                                color: '#fff',
+                                                fontSize: '18px',
+                                                marginLeft: {
+                                                    xs: '0px',
+                                                    sm: '0px',
+                                                    md: '0px',
+                                                    lg: '150px',
+                                                    xl: '150px'
+                                                }
+                                            }}>Login</Button>
+                                        </Link>
+
+                                        <Link href='/HandleUser/Register' >
+                                            <Button sx={{ color: '#fff', fontSize: '18px' }}>Register</Button>
+                                        </Link>
+                                    </>
+                            }
 
                         </Box>
                     </Toolbar>

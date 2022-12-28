@@ -1,13 +1,34 @@
-import { Box, Button, Divider, Link, TextField, Typography } from "@mui/material";
+import { Box, Button, Divider,  TextField, Typography } from "@mui/material";
 import Footer from "../../../Components/Footer/Footer";
 import DrawerAppBar from "../../../Components/Header/Header";
 import GoogleIcon from '@mui/icons-material/Google';
 import LoginIcon from '@mui/icons-material/Login';
 import { useForm } from "react-hook-form";
+import Link from 'next/link';
+import { useContext } from "react";
+import { AuthContext } from "../../../Components/contexts/AuthProvider";
+
+
 
 const Login = () => {
+    const { logIn,singWithGoogle } = useContext(AuthContext);
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const handleLogin = data => console.log(data);
+    const handleLogin = data => {
+        logIn(data.Email,data.Password)
+        .then(result=>{
+            const user= result.user;
+            console.log(user)
+        })
+        .catch(err => console.error(err));
+    };
+    const googleSingIN=()=>{
+        singWithGoogle()
+        .then(result=>{
+            const user = result.user;
+            console.log(user)
+        })
+        .catch(err => console.error(err));
+    }
     return (
         <Box>
             <DrawerAppBar></DrawerAppBar>
@@ -81,7 +102,7 @@ const Login = () => {
                                             OR
                                         </Divider>
                                         <div className="mt-4 mb-2 sm:mb-4">
-                                            <Button variant="contained" style={{ backgroundColor: '#34A853' }} endIcon={<GoogleIcon />} fullWidth>Google</Button>
+                                            <Button onClick={googleSingIN} variant="contained" style={{ backgroundColor: '#34A853' }} endIcon={<GoogleIcon />} fullWidth>Google</Button>
                                         </div>
 
 

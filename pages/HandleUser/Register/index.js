@@ -1,14 +1,35 @@
-import { Box, Button, Divider, Link, TextField, Typography } from "@mui/material";
+import { Box, Button, Divider, TextField, Typography } from "@mui/material";
 import Footer from "../../../Components/Footer/Footer";
 import DrawerAppBar from "../../../Components/Header/Header";
 import GoogleIcon from '@mui/icons-material/Google';
 import HowToRegIcon from '@mui/icons-material/HowToReg';
 import { useForm } from "react-hook-form";
-
+import Link from 'next/link';
+import { useContext } from "react";
+import { AuthContext } from "../../../Components/contexts/AuthProvider";
 const Register = () => {
+
+
+    const { createUser,singWithGoogle } = useContext(AuthContext);
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const handleRegister = data => console.log(data);
-   
+
+    const handleRegister = data => {
+        createUser(data.Email, data.Password)
+        .then(result=>{
+            const user= result.user;
+            console.log(user);
+        })
+        .catch(err => console.error(err));
+    };
+
+    const googleSingIN=()=>{
+        singWithGoogle()
+        .then(result=>{
+            const user = result.user;
+            console.log(user)
+        })
+        .catch(err => console.error(err));
+    }
     return (
         <Box>
             <DrawerAppBar></DrawerAppBar>
@@ -69,21 +90,21 @@ const Register = () => {
 
 
 
-                                        <div className="mb-5 sm:mb-5">                                          
+                                        <div className="mb-5 sm:mb-5">
                                             <TextField type='password' {...register("Password")} fullWidth label="Password" placeholder="Type your password" id="fullWidth" />
-                                            
+
                                         </div>
                                         <div className="mb-12">
-                                        <h1 className="text-md">If you already have an account, just <Link style={{cursor:'pointer'}} href='/HandleUser/Login' className="text-[#1976D2] font-bold">Login</Link> .</h1>
+                                            <h1 className="text-md">If you already have an account, just <Link style={{ cursor: 'pointer' }} href='/HandleUser/Login' className="text-[#1976D2] font-bold">Login</Link> .</h1>
                                         </div>
                                         <div className="mt-4 mb-2 sm:mb-4">
-                                            <Button type="submit" variant="outlined" endIcon={<HowToRegIcon  />} fullWidth>Register</Button>
+                                            <Button type="submit" variant="outlined" endIcon={<HowToRegIcon />} fullWidth>Register</Button>
                                         </div>
-                                        <Divider orientation=	'horizontal' flexItem>
+                                        <Divider orientation='horizontal' flexItem>
                                             OR
                                         </Divider>
                                         <div className="mt-4 mb-2 sm:mb-4">
-                                            <Button variant="contained" style={{ backgroundColor: '#34A853' }} endIcon={<GoogleIcon />} fullWidth>Google</Button>
+                                            <Button onClick={googleSingIN} variant="contained" style={{ backgroundColor: '#34A853' }} endIcon={<GoogleIcon />} fullWidth>Google</Button>
                                         </div>
 
 
