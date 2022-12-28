@@ -53,9 +53,13 @@ const ModalFrom = ({ setOpen, open }) => {
                             setOpen={setOpen}
                             open={open}
                         ></InputFiled>
+
+
                     </Box>
                 </div>
             </Modal>
+
+             <InputFiled></InputFiled>
         </Box>
     );
 };

@@ -130,10 +130,7 @@ export default function InputFiled({ setOpen }) {
                                             alignItems: 'center',
                                             width: '100%',
                                             borderRadius: '15px',
-                                            bgcolor:'#3B82F6',
-                                            
-                
-                                            
+                                            bgcolor:'#3B82F6',                               
                                         }}
                                         
                                         >
@@ -152,6 +149,28 @@ export default function InputFiled({ setOpen }) {
                 </Box>
             </Box>
         </Box>
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     );
 }
