@@ -64,7 +64,17 @@ export default function InputFiled({ setOpen }) {
                                         </Box>
 
                                         {/* flex items-center space-x-4 */}
-                                        <Box  sx={{
+
+
+
+
+
+
+
+
+
+
+                                        {/* <Box  sx={{
                                              display:'flex',
                                              alignItems:'center',
                                              flexDirection:'row'
@@ -88,7 +98,39 @@ export default function InputFiled({ setOpen }) {
                                                     </Box>
                                                 </Box>
                                             </Box>
-                                        </Box>
+                                        </Box> */}
+
+
+                                     <Box sx={{display:'flex', justifyContent:'space-between' }}>
+                                     <TextField type='datetime-local' label="Start Time" id="standard-basic"  focused variant="standard" />
+                                     <TextField type='datetime-local' id="standard-basic" label="End Time" variant="standard"  focused />
+                                     </Box>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                                         <Box style={{margin:'30px 0px'}}  class="flex flex-col">
                                             {/* <label class="leading-loose">Event Description</label>
                                         <input type="text" class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600" placeholder="Optional" /> */}
