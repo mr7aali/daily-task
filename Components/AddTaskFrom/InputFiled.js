@@ -123,17 +123,19 @@ export default function InputFiled({ setOpen }) {
                                         </Button>
                                         {/* class="bg-blue-500 flex justify-center items-center w-full text-white px-4 py-3 rounded-md focus:outline-none" */}
                                         <Button type="submit" 
+                                        style={{ backgroundColor: '#3B82F6',color:'FFFFFF' }}
                                            sx={{
                                             display: 'flex',
                                             justifyContent: 'center',
                                             alignItems: 'center',
                                             width: '100%',
                                             borderRadius: '15px',
-                                            background:'#3B82F6',
-                                            border:'1px solid red'
+                                            bgcolor:'#3B82F6',
+                                            
+                
                                             
                                         }}
-                                        class="bg-blue-500 flex justify-center items-center w-full text-white px-4 py-3 rounded-md focus:outline-none"
+                                        
                                         >
                                             Create
                                         </Button>
