@@ -1,9 +1,18 @@
-import React from 'react';
+import { useQuery } from "@tanstack/react-query";
+import Footer from "../../Components/Footer/Footer";
+import DrawerAppBar from "../../Components/Header/Header";
+import { Mytask } from "../../Components/Mytask/Mytask";
 
 const MyTask = () => {
+
+   
+    
     return (
         <div>
-            <h1>My task</h1>
+             <DrawerAppBar/>
+             {/* task={task} */}
+             <Mytask ></Mytask>
+             <Footer/>
         </div>
     );
 };

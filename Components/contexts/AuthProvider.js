@@ -10,7 +10,9 @@ const AuthProvider = ({ children }) => {
     
     const [user, setUser] = useState('ali');
     const[loading ,setLoading]= useState(true);
-   
+    const [editId,seteditId]= useState(null);
+
+
     const createUser = (email, password) => {
         setLoading(true);
         return createUserWithEmailAndPassword(auth, email, password);
@@ -34,7 +36,7 @@ const AuthProvider = ({ children }) => {
         });
         return () => unsubscribe();
     }, [])
-    const authInfo = {loading,  createUser, logIn,singWithGoogle, user,LogOut }
+    const authInfo = {loading,  createUser, logIn,singWithGoogle, user,LogOut,editId,seteditId }
     return (
         <AuthContext.Provider value={authInfo}>
             {children}

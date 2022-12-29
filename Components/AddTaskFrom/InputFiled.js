@@ -45,7 +45,7 @@ export default function InputFiled({ setOpen }) {
         console.log(imgData.data.url)
        const data2={...data,Photo:imgData.data.url,UserID:user.uid,Email:user.email}
        console.log(data2);
-      
+       reset();
        toast.info('Plase wait sometime', {
         position: "top-center",
         autoClose: 5000,
@@ -59,7 +59,7 @@ export default function InputFiled({ setOpen }) {
 
 
 
-        fetch('http://localhost:5000/addTask', {
+        fetch('https://daily-task-server-eta.vercel.app/addTask', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -102,7 +102,7 @@ export default function InputFiled({ setOpen }) {
 
 
 
-        // fetch('http://localhost:5000/addTask', {
+        // fetch('https://daily-task-server-eta.vercel.app/addTask', {
         //     method: 'POST',
         //     headers: {
         //         'content-type': 'application/json'

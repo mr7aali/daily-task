@@ -1,0 +1,23 @@
+.taskContainer{
+  
+  width: 1200px;
+  margin: 0 auto;
+  columns: 3;
+  column-gap: 30px;
+ 
+  
+}
+.task{
+/* float: left; */
+
+/* break-inside: avoid; */
+break-inside: avoid;
+
+margin-bottom: 20px;
+
+
+}
+.task:hover{
+    
+    z-index: 999;
+}

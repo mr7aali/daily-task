@@ -25,7 +25,7 @@ const drawerWidth = 240;
 function DrawerAppBar(props) {
 
     const { user, LogOut } = React.useContext(AuthContext);
-    console.log(user?.uid);
+    
     const { window } = props;
     const [mobileOpen, setMobileOpen] = React.useState(false);
   
@@ -140,7 +140,7 @@ function DrawerAppBar(props) {
                                 <Button sx={{ color: '#fff', fontSize: '18px' }}>My Task</Button>
                             </Link>
 
-                            <Link href='/' >
+                            <Link href='/ConfirmTask' >
                                 <Button sx={{ color: '#fff', fontSize: '18px' }}>Complited Task</Button>
                             </Link>
 
