@@ -40,7 +40,7 @@ function DrawerAppBar(props) {
           
           
             <Typography variant="h6" sx={{ my: 2, display: 'none' }}>
-                MUI
+                Your Task
             </Typography>
             <Divider />
             <List>
