@@ -18,22 +18,27 @@ import { Container } from '@mui/material';
 import Link from 'next/link';
 import { AuthContext } from '../contexts/AuthProvider';
 
+
 const drawerWidth = 240;
 
 
 function DrawerAppBar(props) {
 
-    const { user,LogOut } = React.useContext(AuthContext);
+    const { user, LogOut } = React.useContext(AuthContext);
     console.log(user?.uid);
     const { window } = props;
     const [mobileOpen, setMobileOpen] = React.useState(false);
-
+  
     const handleDrawerToggle = () => {
         setMobileOpen((prevState) => !prevState);
     };
-    
+
     const drawer = (
         <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
+
+
+          
+          
             <Typography variant="h6" sx={{ my: 2, display: 'none' }}>
                 MUI
             </Typography>
@@ -129,11 +134,11 @@ function DrawerAppBar(props) {
                             <Link href='/'  >
                                 <Button sx={{ color: '#fff', fontSize: '18px' }}>Add Task</Button>
                             </Link>
-                            <Link href='mytask' >
+                            <Link href='/MyTask' >
                                 <Button sx={{ color: '#fff', fontSize: '18px' }}>My Task</Button>
                             </Link>
 
-                            <Link href='d' >
+                            <Link href='/' >
                                 <Button sx={{ color: '#fff', fontSize: '18px' }}>Complited Task</Button>
                             </Link>
 
@@ -141,24 +146,24 @@ function DrawerAppBar(props) {
                             {
                                 user?.uid ?
 
-                                <Link href={'/'} >
-                                <Button 
-                             
-                                onClick={LogOut}
-                                sx={{
-                                    color: '#fff',
-                                    fontSize: '18px',
-                                    marginLeft: {
-                                        xs: '0px',
-                                        sm: '0px',
-                                        md: '0px',
-                                        lg: '150px',
-                                        xl: '150px'
-                                    }
-                                }}>Logout</Button>
-                            </Link>
+                                    <Link href={'/'} >
+                                        <Button
 
-    :
+                                            onClick={LogOut}
+                                            sx={{
+                                                color: '#fff',
+                                                fontSize: '18px',
+                                                marginLeft: {
+                                                    xs: '0px',
+                                                    sm: '0px',
+                                                    md: '0px',
+                                                    lg: '150px',
+                                                    xl: '150px'
+                                                }
+                                            }}>Logout</Button>
+                                    </Link>
+
+                                    :
                                     <>
 
 

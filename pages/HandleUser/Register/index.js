@@ -7,28 +7,82 @@ import { useForm } from "react-hook-form";
 import Link from 'next/link';
 import { useContext } from "react";
 import { AuthContext } from "../../../Components/contexts/AuthProvider";
+import { RequestQuote } from "@mui/icons-material";
+import { toast } from "react-toastify";
+
+
 const Register = () => {
 
 
     const { createUser,singWithGoogle } = useContext(AuthContext);
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register, reset, handleSubmit, formState: { errors } } = useForm();
 
     const handleRegister = data => {
         createUser(data.Email, data.Password)
         .then(result=>{
             const user= result.user;
             console.log(user);
+            reset();
+            router.push('/');
+            toast.success('🦄 Welcome to our website!', {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+                });
         })
-        .catch(err => console.error(err));
+        .catch(err =>{
+            console.error(err)
+            toast.error('Try again', {
+               position: "top-center",
+               autoClose: 5000,
+               hideProgressBar: false,
+               closeOnClick: true,
+               pauseOnHover: true,
+               draggable: true,
+               progress: undefined,
+               theme: "dark",
+               });
+       });
     };
 
     const googleSingIN=()=>{
         singWithGoogle()
         .then(result=>{
             const user = result.user;
-            console.log(user)
+            console.log(user);
+            reset();
+            router.push('/');
+            toast.success('🦄 Welcome to our website!', {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+                });
+          
+            
         })
-        .catch(err => console.error(err));
+        .catch(err =>{
+            console.error(err)
+            toast.error('Try again', {
+               position: "top-center",
+               autoClose: 5000,
+               hideProgressBar: false,
+               closeOnClick: true,
+               pauseOnHover: true,
+               draggable: true,
+               progress: undefined,
+               theme: "dark",
+               });
+       });
     }
     return (
         <Box>

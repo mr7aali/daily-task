@@ -8,12 +8,12 @@ import Link from 'next/link';
 import { useContext } from "react";
 import { AuthContext } from "../../../Components/contexts/AuthProvider";
 import { useRouter } from "next/router";
-import { toast } from "react-toastify";
+
 
 
 const Login = () => {
     const { logIn,singWithGoogle } = useContext(AuthContext);
-    const { register,reset, handleSubmit, formState: { errors } } = useForm();
+    const { register, handleSubmit, formState: { errors } } = useForm();
     const router = useRouter();
 
 
@@ -23,32 +23,8 @@ const Login = () => {
             const user= result.user;
             console.log(user);
             router.push('/');
-            reset();
-            toast.success('🦄 Welcome to our website!', {
-                position: "top-center",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "dark",
-                });
         })
-        .catch(err => {
-            console.error(err);
-            reset();
-            toast.error('Try again', {
-                position: "top-center",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "dark",
-                });
-        });
+        .catch(err => console.error(err));
     };
 
 
@@ -57,33 +33,10 @@ const Login = () => {
         .then(result=>{
             const user = result.user;
             console.log(user);
-            reset();
             router.push('/');
-            toast.success('🦄 Welcome to our website!', {
-                position: "top-center",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "dark",
-                });
-            router.push('/');
+           
         })
-        .catch(err =>{
-             console.error(err)
-             toast.error('Try again', {
-                position: "top-center",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "dark",
-                });
-        });
+        .catch(err => console.error(err));
     }
     return (
         <Box>
@@ -173,6 +126,7 @@ const Login = () => {
                 </Box>
             </Box>
             <Footer></Footer>
+           
         </Box>
     );
 };
