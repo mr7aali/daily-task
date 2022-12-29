@@ -59,7 +59,7 @@ const Task = ({ t, refetch }) => {
                     <div >
                         <h1>{t?.TaskTitle} </h1>
                     </div>
-                    <Button onClick={()=>gotoNewRout(t)} variant="outlined" startIcon={<EditRoadIcon />} className={Style.EdditButton}>Edit</Button>
+                    {/* <Button    className={Style.EdditButton}>Edit</Button> */}
                 </div>
 
 
@@ -72,10 +72,10 @@ const Task = ({ t, refetch }) => {
                     <div>
                         <p className={Style.Discription}>{t?.TaskDescription}</p>
                     </div>
-                   
+                    <Button onClick={()=>gotoNewRout(t)}  variant="outlined"  startIcon={<EditRoadIcon />} sx={{width:'150px'}}>ali</Button>
                     <div className={Style.btnContainer}>
-                    
-                    
+                      
+                     
                         {
                             t?.confirm ?
                                 
