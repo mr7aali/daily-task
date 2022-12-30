@@ -10,6 +10,7 @@ import { AuthContext } from "../../../Components/contexts/AuthProvider";
 import { RequestQuote } from "@mui/icons-material";
 import { toast } from "react-toastify";
 import Head from "next/head";
+import { useRouter } from "next/router";
 
 
 const Register = () => {
@@ -17,7 +18,7 @@ const Register = () => {
 
     const { createUser,singWithGoogle } = useContext(AuthContext);
     const { register, reset, handleSubmit, formState: { errors } } = useForm();
-
+    const router = useRouter();
     const handleRegister = data => {
         createUser(data.Email, data.Password)
         .then(result=>{

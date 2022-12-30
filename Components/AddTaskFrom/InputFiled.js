@@ -46,7 +46,7 @@ export default function InputFiled({ setOpen }) {
             .then(imgData => {
                 delete data.Image;
                 console.log(imgData.data.url)
-                const data2 = { ...data, Photo: imgData.data.url, UserID: user.uid, Email: user.email }
+                const data2 = { ...data, Photo: imgData?.data.url, UserID: user?.uid, Email: user?.email }
                 console.log(data2);
                 reset();
                 toast.info('Plase wait sometime', {
