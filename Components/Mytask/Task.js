@@ -9,7 +9,7 @@ import LoadingButton from '@mui/lab/LoadingButton';
 
 const Task = ({ t, refetch }) => {
 
-    const { editId,seteditId } = useContext(AuthContext);
+    const { seteditId } = useContext(AuthContext);
     const [loadingBtnD, setLoadingBtnD] = React.useState(false);
     const [loadingBtnC, setLoadingBtnC] = React.useState(false);
     const router = useRouter();
