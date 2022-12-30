@@ -1,11 +1,12 @@
 import { Box, Button, Divider,  TextField, Typography } from "@mui/material";
+import LoadingButton from '@mui/lab/LoadingButton';
 import Footer from "../../../Components/Footer/Footer";
 import DrawerAppBar from "../../../Components/Header/Header";
 import GoogleIcon from '@mui/icons-material/Google';
 import LoginIcon from '@mui/icons-material/Login';
 import { useForm } from "react-hook-form";
 import Link from 'next/link';
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../../../Components/contexts/AuthProvider";
 import { useRouter } from "next/router";
 
@@ -15,6 +16,11 @@ const Login = () => {
     const { logIn,singWithGoogle } = useContext(AuthContext);
     const { register, handleSubmit, formState: { errors } } = useForm();
     const router = useRouter();
+  
+    const [loadingBtn, setLoadingBtn] = React.useState(true);
+    function handleClick() {
+        setLoadingBtn(true);
+    }
 
 
     const handleLogin = data => {
@@ -105,11 +111,21 @@ const Login = () => {
 
 
                                         <div className="mt-4 mb-2 sm:mb-4">
-                                            <Button type="submit" variant="outlined" endIcon={<LoginIcon />} fullWidth>Log In</Button>
+                                       {/* /// LoadingButton */}
+                                            <LoadingButton 
+                                            type="submit" 
+                                            variant="outlined" 
+                                            endIcon={<LoginIcon />}
+                                             fullWidth
+                                             loadingIndicator="Loading…"
+                                             onClick={handleClick}
+                                             loading={loadingBtn}
+                                             >Log In</LoadingButton>
                                         </div>
                                         <Divider orientation=	'horizontal' flexItem>
                                             OR
                                         </Divider>
+
                                         <div className="mt-4 mb-2 sm:mb-4">
                                             <Button onClick={googleSingIN} variant="contained" style={{ backgroundColor: '#34A853' }} endIcon={<GoogleIcon />} fullWidth>Google</Button>
                                         </div>

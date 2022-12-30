@@ -9,6 +9,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../../Components/contexts/AuthProvider";
 import { RequestQuote } from "@mui/icons-material";
 import { toast } from "react-toastify";
+import Head from "next/head";
 
 
 const Register = () => {
@@ -86,6 +87,9 @@ const Register = () => {
     }
     return (
         <Box>
+             <Head>
+                <title>Register</title>
+            </Head>
             <DrawerAppBar></DrawerAppBar>
             <Box className="relative"
                 sx={{

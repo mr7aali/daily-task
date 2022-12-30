@@ -1,92 +1,108 @@
-import { Box, Button, Divider,  TextField, Typography } from "@mui/material";
+import * as React from 'react';
+import { Box, Button, Divider, TextField, Typography } from "@mui/material";
 import Footer from "../../../Components/Footer/Footer";
 import DrawerAppBar from "../../../Components/Header/Header";
 import GoogleIcon from '@mui/icons-material/Google';
 import LoginIcon from '@mui/icons-material/Login';
 import { useForm } from "react-hook-form";
 import Link from 'next/link';
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../../../Components/contexts/AuthProvider";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
-
+import Head from "next/head";
+import LoadingButton from '@mui/lab/LoadingButton';
 
 const Login = () => {
-    const { logIn,singWithGoogle } = useContext(AuthContext);
-    const { register,reset, handleSubmit, formState: { errors } } = useForm();
+    const { logIn, singWithGoogle } = useContext(AuthContext);
+    const { register, reset, handleSubmit, formState: { errors } } = useForm();
     const router = useRouter();
-
-
+   
+    const [loadingBtn, setLoadingBtn] = React.useState(false);
+   
+   
+    function handleClick() {
+        setLoadingBtn(true);
+    }
     const handleLogin = data => {
-        logIn(data.Email,data.Password)
-        .then(result=>{
-            const user= result.user;
-            console.log(user);
-            router.push('/');
-            reset();
-            toast.success('🦄 Welcome to our website!', {
-                position: "top-center",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "dark",
+        setLoadingBtn(true);
+        logIn(data.Email, data.Password)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+                router.push('/');
+                reset();
+               
+                toast.success('🦄 Welcome to our website!', {
+                    position: "top-center",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
                 });
-        })
-        .catch(err => {
-            console.error(err);
-            reset();
-            toast.error('Try again', {
-                position: "top-center",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "dark",
+            })
+            .catch(err => {
+                console.error(err);
+                setLoadingBtn(false);
+                reset();
+                toast.error('Try again', {
+                    position: "top-center",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
                 });
-        });
+            });
     };
 
 
-    const googleSingIN=()=>{
+    const googleSingIN = () => {
+        setLoadingBtn(true);
         singWithGoogle()
-        .then(result=>{
-            const user = result.user;
-            console.log(user);
-            reset();
-            router.push('/');
-            toast.success('🦄 Welcome to our website!', {
-                position: "top-center",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "dark",
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+                setLoadingBtn(false);
+                reset();
+                router.push('/');
+                toast.success('🦄 Welcome to our website!', {
+                    position: "top-center",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
                 });
-            router.push('/');
-        })
-        .catch(err =>{
-             console.error(err)
-             toast.error('Try again', {
-                position: "top-center",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "dark",
+                router.push('/');
+            })
+            .catch(err => {
+                console.error(err)
+                setLoadingBtn(false);
+                toast.error('Try again', {
+                    position: "top-center",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
                 });
-        });
+            });
     }
     return (
         <Box>
+            <Head>
+                <title>Login</title>
+            </Head>
             <DrawerAppBar></DrawerAppBar>
             <Box className="relative"
                 sx={{
@@ -142,23 +158,46 @@ const Login = () => {
 
 
 
-                                        <div className="mb-12 sm:mb-12">                                          
-                                            <TextField type='password' {...register("Password")}  fullWidth label="Password" placeholder="Type your password" id="fullWidth" />
+                                        <div className="mb-12 sm:mb-12">
+                                            <TextField type='password' {...register("Password")} fullWidth label="Password" placeholder="Type your password" id="fullWidth" />
                                         </div>
 
                                         <div className="mb-7">
-                                        <h1 className="text-md">If you don't have an account, just <Link style={{cursor:'pointer'}} href='/HandleUser/Register' className="text-[#1976D2] font-bold">Register</Link> .</h1>
+                                            <h1 className="text-md">If you don't have an account, just <Link style={{ cursor: 'pointer' }} href='/HandleUser/Register' className="text-[#1976D2] font-bold">Register</Link> .</h1>
                                         </div>
 
 
                                         <div className="mt-4 mb-2 sm:mb-4">
-                                            <Button type="submit" variant="outlined" endIcon={<LoginIcon />} fullWidth>Log In</Button>
+                                            {/* <Button type="submit" variant="outlined" endIcon={<LoginIcon />} fullWidth>Log In</Button> */}
+
+                                            <LoadingButton 
+                                            type="submit" 
+                                            variant="outlined" 
+                                            endIcon={<LoginIcon />}
+                                             fullWidth
+
+                                             loadingIndicator="Loading….."
+                                             disabled={false}
+                                             loading={loadingBtn}
+                                             
+                                             >Log In</LoadingButton>
+
                                         </div>
-                                        <Divider orientation=	'horizontal' flexItem>
+                                        <Divider orientation='horizontal' flexItem>
                                             OR
                                         </Divider>
                                         <div className="mt-4 mb-2 sm:mb-4">
-                                            <Button onClick={googleSingIN} variant="contained" style={{ backgroundColor: '#34A853' }} endIcon={<GoogleIcon />} fullWidth>Google</Button>
+                                            <LoadingButton
+                                             onClick={googleSingIN}
+                                             variant="contained" 
+                                             style={{ backgroundColor: '#34A853' }} 
+                                             endIcon={<GoogleIcon />} fullWidth
+
+                                             loadingIndicator="Loading….."
+                                             disabled={false}
+                                             loading={loadingBtn}
+
+                                             >Google</LoadingButton>
                                         </div>
 
 

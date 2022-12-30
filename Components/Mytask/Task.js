@@ -1,22 +1,23 @@
-
+import * as React from 'react';
 import { Button } from '@mui/material';
 import Style from '../../styles/Task.module.css'
 import EditRoadIcon from '@mui/icons-material/EditRoad';
 import { useRouter } from 'next/router';
 import { AuthContext } from '../contexts/AuthProvider';
 import { useContext } from 'react';
-
+import LoadingButton from '@mui/lab/LoadingButton';
 
 const Task = ({ t, refetch }) => {
 
     const { editId,seteditId } = useContext(AuthContext);
-
+    const [loadingBtnD, setLoadingBtnD] = React.useState(false);
+    const [loadingBtnC, setLoadingBtnC] = React.useState(false);
     const router = useRouter();
 
 
     const handleDelete = (data) => {
 
-        
+        setLoadingBtnD(true);
         console.log(data?._id)
         //https://daily-task-server-eta.vercel.app/deleteTask
         fetch(`https://daily-task-server-eta.vercel.app/deleteTask?id=${data?._id}`, {
@@ -24,6 +25,7 @@ const Task = ({ t, refetch }) => {
         })
             .then(res => res.json())
             .then(data => {
+                setLoadingBtnD(false);
                 console.log(data);
                 refetch();
             })
@@ -31,12 +33,13 @@ const Task = ({ t, refetch }) => {
 
 
     const updateConfirm = (data) => {
-
+        setLoadingBtnC(true);
         fetch(`https://daily-task-server-eta.vercel.app/addConfirm?id=${data._id}`, {
             method: 'PUT'
         })
             .then(res => res.json())
             .then(data => {
+                setLoadingBtnC(false);
                 refetch()
             })
 
@@ -80,13 +83,40 @@ const Task = ({ t, refetch }) => {
                             t?.confirm ?
                                 
                                 <>
-                                    <Button onClick={() => handleDelete(t)} variant="outlined" color='error'>Delete</Button>
-                                    <Button  disabled onClick={() => updateConfirm(t)} variant="outlined">Confirmed</Button>
+                                    <LoadingButton 
+                                    onClick={() => handleDelete(t)} 
+                                    variant="outlined" color='error'
+                                    loadingIndicator="Wait….."
+                                    disabled={false}
+                                    loading={loadingBtnD}
+                                    >Delete</LoadingButton>
+                                    <Button  
+                                    disabled 
+                                    onClick={() => updateConfirm(t)} 
+                                    variant="outlined"
+                                    loadingIndicator="Loading….."
+                                    
+                                    loading={loadingBtnC}
+                                    >Confirmed</Button>
                                 </>
                                 :
                                 <>
-                                <Button  onClick={() => handleDelete(t)} variant="outlined" color='error'>Delete</Button>
-                                <Button onClick={() => updateConfirm(t)} variant="outlined">Confirm</Button>
+                                <LoadingButton 
+                                onClick={() => handleDelete(t)} 
+                                variant="outlined" 
+                                color='error'
+                                loadingIndicator="Wait……"
+                                disabled={false}
+                                loading={loadingBtnD}
+                                >Delete</LoadingButton>
+
+                                <LoadingButton 
+                                onClick={() => updateConfirm(t)} 
+                                variant="outlined"
+                                loadingIndicator="Confirming….."
+                                disabled={false}
+                                loading={loadingBtnC}
+                                >Confirm</LoadingButton>
                                 </>
                         }
 

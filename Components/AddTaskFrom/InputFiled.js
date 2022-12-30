@@ -8,7 +8,8 @@ import { AuthContext } from '../contexts/AuthProvider';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/router';
 import { gotoNewRoute } from '../Utility/goNewRoute';
-
+import LoginIcon from '@mui/icons-material/Login';
+import LoadingButton from '@mui/lab/LoadingButton';
 
 
 
@@ -16,23 +17,15 @@ import { gotoNewRoute } from '../Utility/goNewRoute';
 
 export default function InputFiled({ setOpen }) {
 
-    // const router = useRouter();
-
-
-    // const gotoNewRout = () => {
-
-    //     router.push('/');
-    // } 
     
     const { user,gotoNewRout } = React.useContext(AuthContext);
     console.log(user?.uid);
     const [file, setFile] = useState();
+    const [loadingBtn, setLoadingBtn] = React.useState(false);
     const imgHostKey = 'e7c7ad4bbef122abda9b9cceb2879568';
 
     function handleChange(e) {
-
         //  console.log(e.target.files[0]);
-
         setFile(URL.createObjectURL(e.target.files[0]));
     }
 
@@ -40,7 +33,7 @@ export default function InputFiled({ setOpen }) {
 
 
     const handleModal = data => {
-
+        setLoadingBtn(true);
         const image = data.Image[0];
         const formData = new FormData();
         formData.append('image', image);
@@ -81,6 +74,7 @@ export default function InputFiled({ setOpen }) {
                     .then(data => {
 
                         reset();
+                        setLoadingBtn(false);
                         toast.success('Added your task', {
                             position: "top-center",
                             autoClose: 5000,
@@ -223,22 +217,23 @@ export default function InputFiled({ setOpen }) {
                                         <Button
 
                                             variant="outlined" color="error"
-                                            fullWidth
-                                            
-                                            sx={{ margin: '0 auto',fontWeight:'700' }}
-                                            // onClick={gotoNewRout}
+                                            fullWidth            
+                                            sx={{ margin: '0 auto',fontWeight:'700' }}                                          
                                             onClick={()=>gotoNewRout('/')}
                                         >
                                             Cancel
                                         </Button>
 
-                                        <Button type="submit"
+                                        <LoadingButton type="submit"
                                             style={{ backgroundColor: '#3B82F6', color: 'FFFFFF' }}
-
                                             sx={{ margin: '0 auto', color: 'white', height: '50px', width: '200px' }}
+                                            loadingIndicator="Creating….."
+                                            disabled={false}
+                                            loading={loadingBtn}
+                                            
                                         >
                                             Create
-                                        </Button>
+                                        </LoadingButton>
 
                                     </Box>
 

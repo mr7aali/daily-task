@@ -9,6 +9,7 @@ import { useForm } from "react-hook-form";
 import { AuthContext } from "../../Components/contexts/AuthProvider";
 import { toast } from "react-toastify";
 import { useRouter } from "next/router";
+import Head from 'next/head';
 
 
 
@@ -47,6 +48,9 @@ const EditPage = () => {
 
     return (
         <div>
+            <Head>
+                <title>Edit your task</title>
+            </Head>
             <DrawerAppBar></DrawerAppBar>
 
             <Box sx={{
@@ -60,14 +64,15 @@ const EditPage = () => {
                         alignItems: 'center',
                         justifyContent: 'center',
                     }}>
-                        <Typography sx={{
-                            fontSize: '40px',
+                        <Typography style={{
+                            fontSize: '50px',
                             fontWeight: 600,
-                            padding: '20px'
+                            padding: '20px',
+                            textShadow: '0px 2px 3px rgba(0,0,0,0.68)'
                         }}>Edit Your Task</Typography>
                     </Box>
                     <Box class="relative py-3 sm:max-w-xl sm:mx-auto">
-                        <Box style={{ borderRadius: '15px' }} class="relative px-4 py-10 bg-white mx-8 md:mx-0 shadow  sm:p-10">
+                        <Box style={{ borderRadius: '15px' }} class="relative px-4 py-10 bg-white mx-8 md:mx-0 shadow-2xl sm:p-10">
                             <Box class="max-w-md mx-auto">
 
                                 <Box class="flex items-center space-x-5">
@@ -134,9 +139,9 @@ const EditPage = () => {
 
 
 
-                                            <Box sx={{ display: 'flex',  justifyContent: 'space-between' }}>
-                                                <TextField sx={{margin:'5px'}} defaultValue={editId?.StartTime} required {...register("StartTime")} type='datetime-local' label="Start Time" id="standard-basic" focused variant="standard" />
-                                                <TextField sx={{margin:'5px'}} defaultValue={editId?.EndTime} required {...register("EndTime")} type='datetime-local' id="standard-basic" label="End Time" variant="standard" focused />
+                                            <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                                                <TextField sx={{ margin: '5px' }} defaultValue={editId?.StartTime} required {...register("StartTime")} type='datetime-local' label="Start Time" id="standard-basic" focused variant="standard" />
+                                                <TextField sx={{ margin: '5px' }} defaultValue={editId?.EndTime} required {...register("EndTime")} type='datetime-local' id="standard-basic" label="End Time" variant="standard" focused />
                                             </Box>
 
 
@@ -145,7 +150,7 @@ const EditPage = () => {
 
                                             <Box style={{
                                                 margin: '20px 0',
-                                             
+
                                             }} class="">
 
                                                 {/* <div className={Style.ali}>
@@ -188,10 +193,10 @@ const EditPage = () => {
                                             <Button
                                                 color='error'
                                                 fullWidth
-                                               variant='outlined'
+                                                variant='outlined'
                                                 onClick={gotoNewRout}
-                                                // sx={{ margin: '0 auto', color: 'red', fontSize: '25px' }}
-                                              
+                                            // sx={{ margin: '0 auto', color: 'red', fontSize: '25px' }}
+
                                             >
 
                                                 Back
