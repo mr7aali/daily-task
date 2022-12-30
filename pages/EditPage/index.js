@@ -100,10 +100,9 @@ const EditPage = () => {
                                     <Box class="Boxide-y Boxide-gray-200">
                                         <Box sx={{ padding: '50px 0' }} class=" text-base leading-6  text-gray-700 sm:text-lg sm:leading-7">
 
-
                                             <Box style={{ margin: '30px 0px' }} class="flex flex-col">
                                                 {/* <label class="leading-loose">Task Title</label>
-                                        ing-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600" placeholder="Event title" /> */}
+                                      w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600" placeholder="Event title" /> */}
                                                 <TextField
                                                     required
                                                     id="outlined-textarea"
