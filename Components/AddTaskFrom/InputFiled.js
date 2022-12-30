@@ -2,13 +2,10 @@ import * as React from 'react';
 import { Box, Button, TextField, Typography } from "@mui/material";
 import { useForm } from "react-hook-form";
 import AcUnitIcon from '@mui/icons-material/AcUnit';
-import { useContext, useState } from "react";
+import { useState } from "react";
 import Style from '../../styles/Modal.module.css'
 import { AuthContext } from '../contexts/AuthProvider';
 import { toast } from 'react-toastify';
-import { useRouter } from 'next/router';
-import { gotoNewRoute } from '../Utility/goNewRoute';
-import LoginIcon from '@mui/icons-material/Login';
 import LoadingButton from '@mui/lab/LoadingButton';
 
 
