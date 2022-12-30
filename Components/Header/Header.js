@@ -17,6 +17,7 @@ import Button from '@mui/material/Button';
 import { Container } from '@mui/material';
 import Link from 'next/link';
 import { AuthContext } from '../contexts/AuthProvider';
+import { useRouter } from 'next/router';
 
 
 const drawerWidth = 240;
@@ -25,10 +26,19 @@ const drawerWidth = 240;
 function DrawerAppBar(props) {
 
     const { user, LogOut } = React.useContext(AuthContext);
-    
     const { window } = props;
     const [mobileOpen, setMobileOpen] = React.useState(false);
-  
+    const router = useRouter();
+
+
+    const gotoNewRout=()=>{
+   
+        router.push('/');
+    }
+
+
+
+
     const handleDrawerToggle = () => {
         setMobileOpen((prevState) => !prevState);
     };
@@ -126,7 +136,13 @@ function DrawerAppBar(props) {
                         <Typography
                             variant="h6"
                             component="div"
-                            sx={{ flexGrow: 1, display: { xs: 'none', sm: 'node', md: 'block' } }}
+                            onClick={gotoNewRout}
+                            sx={{ flexGrow: 1, 
+                                display: { xs: 'none', sm: 'node', md: 'block' },
+                                cursor:'pointer',
+                              
+                            
+                            }}
                         >
                            Your Task
                         </Typography>

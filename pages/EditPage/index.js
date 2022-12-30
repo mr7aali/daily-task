@@ -18,11 +18,14 @@ import { Router, useRouter } from "next/router";
 
 const EditPage = () => {
     const router = useRouter();
-    const { editId,seteditId } = React.useContext(AuthContext);
-    const [file, setFile] = React.useState();
-    console.log(editId);
+    const { editId } = React.useContext(AuthContext);
+    // const [file, setFile] = React.useState();
     const { register, reset, handleSubmit, formState: { errors } } = useForm();
-    
+   
+    const gotoNewRout=()=>{
+   
+        router.push('/MyTask');
+    }
     const handleModal=(data)=>{
 
           const id =editId._id ;
@@ -181,9 +184,10 @@ const EditPage = () => {
                                       
                                         <Button
 
-                          
+                          onClick={gotoNewRout}
                                             sx={{ margin: '0 auto', color: 'red', fontSize:'25px' }}
                                             >
+                                         
                                            Back
                                         </Button>
                                         {/* class="bg-blue-500 flex justify-center items-center w-full text-white px-4 py-3 rounded-md focus:outline-none" */}

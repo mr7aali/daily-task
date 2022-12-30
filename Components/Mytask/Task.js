@@ -43,12 +43,12 @@ const Task = ({ t, refetch }) => {
 
     }
 
+    
     const gotoNewRout=(data)=>{
-        // console.log(data);
-        // seteditId(data)
         seteditId(data)
         router.push('/EditPage');
     }
+
 
     return (
         <div className={Style.HoleContainer}>

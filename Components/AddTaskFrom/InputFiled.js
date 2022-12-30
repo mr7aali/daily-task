@@ -6,6 +6,8 @@ import { useContext, useState } from "react";
 import Style from '../../styles/Modal.module.css'
 import { AuthContext } from '../contexts/AuthProvider';
 import { toast } from 'react-toastify';
+import { useRouter } from 'next/router';
+import { gotoNewRoute } from '../Utility/goNewRoute';
 
 
 
@@ -14,64 +16,47 @@ import { toast } from 'react-toastify';
 
 export default function InputFiled({ setOpen }) {
 
-    const { user} = React.useContext(AuthContext);
+    // const router = useRouter();
+
+
+    // const gotoNewRout = () => {
+
+    //     router.push('/');
+    // } 
+    
+    const { user,gotoNewRout } = React.useContext(AuthContext);
     console.log(user?.uid);
     const [file, setFile] = useState();
     const imgHostKey = 'e7c7ad4bbef122abda9b9cceb2879568';
 
     function handleChange(e) {
-      
+
         //  console.log(e.target.files[0]);
-       
+
         setFile(URL.createObjectURL(e.target.files[0]));
     }
-   
+
     const { register, reset, handleSubmit, formState: { errors } } = useForm();
 
 
     const handleModal = data => {
-      
-      const image = data.Image[0];
-      const formData = new FormData();
-      formData.append('image', image);
-      const  url = `https://api.imgbb.com/1/upload?key=${imgHostKey}`;
-      fetch(url, {
-        method: 'POST',
-        body: formData
-    })
-    .then(res => res.json())
-    .then(imgData=>{
-        delete data.Image;
-        console.log(imgData.data.url)
-       const data2={...data,Photo:imgData.data.url,UserID:user.uid,Email:user.email}
-       console.log(data2);
-       reset();
-       toast.info('Plase wait sometime', {
-        position: "top-center",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "dark",
-        });
 
-
-
-        fetch('https://daily-task-server-eta.vercel.app/addTask', {
+        const image = data.Image[0];
+        const formData = new FormData();
+        formData.append('image', image);
+        const url = `https://api.imgbb.com/1/upload?key=${imgHostKey}`;
+        fetch(url, {
             method: 'POST',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(data2)
-
+            body: formData
         })
             .then(res => res.json())
-            .then(data => {
-
+            .then(imgData => {
+                delete data.Image;
+                console.log(imgData.data.url)
+                const data2 = { ...data, Photo: imgData.data.url, UserID: user.uid, Email: user.email }
+                console.log(data2);
                 reset();
-                toast.success('Added your task', {
+                toast.info('Plase wait sometime', {
                     position: "top-center",
                     autoClose: 5000,
                     hideProgressBar: false,
@@ -80,49 +65,36 @@ export default function InputFiled({ setOpen }) {
                     draggable: true,
                     progress: undefined,
                     theme: "dark",
-                    });
+                });
+
+
+
+                fetch('https://daily-task-server-eta.vercel.app/addTask', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(data2)
+
+                })
+                    .then(res => res.json())
+                    .then(data => {
+
+                        reset();
+                        toast.success('Added your task', {
+                            position: "top-center",
+                            autoClose: 5000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                            theme: "dark",
+                        });
+                    })
+
+
             })
-
-
-
-
-
-    })
-
-    // console.log(data.Image.length)
-   
-
-
-
-
-
-
-
-
-
-
-
-        // fetch('https://daily-task-server-eta.vercel.app/addTask', {
-        //     method: 'POST',
-        //     headers: {
-        //         'content-type': 'application/json'
-        //     },
-        //     body: JSON.stringify(data2)
-
-        // })
-        //     .then(res => res.json())
-        //     .then(data => {
-
-        //         reset();
-               
-        //     })
-
-
-
-
-
-
-
 
 
 
@@ -165,8 +137,7 @@ export default function InputFiled({ setOpen }) {
 
 
                                         <Box style={{ margin: '30px 0px' }} class="flex flex-col">
-                                            {/* <label class="leading-loose">Task Title</label>
-                                        <input type="text" class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600" placeholder="Event title" /> */}
+
                                             <TextField
                                                 required
                                                 id="outlined-textarea"
@@ -179,10 +150,9 @@ export default function InputFiled({ setOpen }) {
 
 
                                         <Box style={{ margin: '30px 0px' }} class="flex flex-col">
-                                            {/* <label class="leading-loose">Task Subtitle</label>
-                                        <input type="text" class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600" placeholder="Optional" /> */}
+
                                             <TextField
-                                            required
+                                                required
                                                 id="outlined-textarea"
                                                 label="Task Subtitle"
                                                 placeholder="Task Subtitle"
@@ -191,35 +161,11 @@ export default function InputFiled({ setOpen }) {
                                             />
                                         </Box>
 
-                                        {/* flex items-center space-x-4 */}
 
 
 
-                                        {/* <Box  sx={{
-                                             display:'flex',
-                                             alignItems:'center',
-                                             flexDirection:'row'
-                                           
-                                        }}    class="">
-                                            <Box  class="flex flex-col">
-                                                <label class="leading-loose">Start</label>
-                                                <Box class="relative focus-within:text-gray-600 text-gray-400">
-                                                    <input type="date"  {...register("StartDate")} class="pr-4 pl-10 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600" placeholder="25/02/2020" />
-                                                    <Box class="absolute left-3 top-2">
-                                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-                                                    </Box>
-                                                </Box>
-                                            </Box>
-                                            <Box class="flex flex-col">
-                                                <label class="leading-loose">End</label>
-                                                <Box class="relative focus-within:text-gray-600 text-gray-400">
-                                                    <input type="date" {...register("EndDate")} class="pr-4 pl-10 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600" placeholder="26/02/2020" />
-                                                    <Box class="absolute left-3 top-2">
-                                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-                                                    </Box>
-                                                </Box>
-                                            </Box>
-                                        </Box> */}
+
+
 
 
                                         <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -231,34 +177,28 @@ export default function InputFiled({ setOpen }) {
 
 
 
-                                        <Box style={{ 
+                                        <Box style={{
                                             margin: '30px 0px',
-                                            display:'grid',
-                                            gridTemplateColumns:'1fr 1fr',
-                                            gap:'15px',
+                                            display: 'grid',
+                                            gridTemplateColumns: '1fr 1fr',
+                                            gap: '15px',
                                             // border:'1px solid red'
                                             //flex flex-col
-                                          }} class="">
-                                            {/* <label class="leading-loose">Event Description</label>
-                                        <input type="text" class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600" placeholder="Optional" /> */}
-                                          
-                                            {/* <input
-                                           
-                                                className={Style.ali}
-                                                type='file'
-                                                accept="image/*"
-                                            /> */}
+                                        }} class="">
+
+
+
                                             <div className={Style.ali}>
                                                 <div className={Style.backgroundContainer}>
 
                                                 </div>
-                                                <img src={file}/>
-                                               <input required {...register("Image")} type='file' id="file" onChange={handleChange} accept='image/*'/>
+                                                <img src={file} />
+                                                <input required {...register("Image")} type='file' id="file" onChange={handleChange} accept='image/*' />
 
-                                               <label htmlFor="file"><span>Chose a photo</span></label>
+                                                <label htmlFor="file"><span>Chose a photo</span></label>
                                             </div>
                                             <TextField
-                                               required
+                                                required
                                                 id="outlined-multiline-static"
                                                 label="Task Description"
                                                 multiline
@@ -267,8 +207,8 @@ export default function InputFiled({ setOpen }) {
                                                 {...register("TaskDescription")}
                                             />
                                         </Box>
-                                      
-                                        
+
+
                                     </Box>
 
 
@@ -280,36 +220,21 @@ export default function InputFiled({ setOpen }) {
                                         gridTemplateColumns: '1fr 1fr'
 
                                     }}>
-
-
-                                        {/* class="flex justify-center items-center w-full text-gray-900 px-4 py-3 rounded-md focus:outline-none" */}
                                         <Button
 
-                                            // sx={{
-                                            //     display: 'flex',
-                                            //     justifyContent: 'center',
-                                            //     alignItems: 'center',
-                                            //     width: '100%',
-                                            //     borderRadius: '15px'
-                                            // }}
-
-                                            sx={{ margin: '0 auto', color: 'red' }}
-                                            onClick={() =>
-
-                                                setOpen(false)}>
+                                            variant="outlined" color="error"
+                                            fullWidth
+                                            
+                                            sx={{ margin: '0 auto',fontWeight:'700' }}
+                                            // onClick={gotoNewRout}
+                                            onClick={()=>gotoNewRout('/')}
+                                        >
                                             Cancel
                                         </Button>
-                                        {/* class="bg-blue-500 flex justify-center items-center w-full text-white px-4 py-3 rounded-md focus:outline-none" */}
+
                                         <Button type="submit"
                                             style={{ backgroundColor: '#3B82F6', color: 'FFFFFF' }}
-                                            //    sx={{
-                                            //     display: 'flex',
-                                            //     justifyContent: 'center',
-                                            //     alignItems: 'center',
-                                            //     width: '100%',
-                                            //     borderRadius: '15px',
-                                            //     bgcolor:'#3B82F6',                               
-                                            // }}
+
                                             sx={{ margin: '0 auto', color: 'white', height: '50px', width: '200px' }}
                                         >
                                             Create
@@ -326,19 +251,12 @@ export default function InputFiled({ setOpen }) {
                     </Box>
                 </Box>
             </Box>
-            
+
         </Box>
 
 
 
-        //   <Box sx={{
-        //     width:'300px',
-        //     height:'500px',
-        //     border:'1px solid red',
-        //     bgcolor:'#fff'
-        //   }}>
 
-        //   </Box>
 
     );
 }

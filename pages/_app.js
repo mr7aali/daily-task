@@ -3,9 +3,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import AuthProvider from '../Components/contexts/AuthProvider'
 import '../styles/globals.css'
 import {
-  useQuery,
-  useMutation,
-  useQueryClient,
+ 
   QueryClient,
   QueryClientProvider,
 } from '@tanstack/react-query'

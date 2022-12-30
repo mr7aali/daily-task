@@ -3,9 +3,16 @@ import { useState } from "react";
 import IconButton from '@mui/material/IconButton';
 import { Add } from "@mui/icons-material";
 import ModalFrom from "./ModalFrom";
+import { useRouter } from "next/router";
 
 const AddTaskFrom = () => {
+
     const [open, setOpen] = useState(false);
+    const router = useRouter();
+    const gotoNewRout=()=>{
+   
+        router.push('/AddTaskPage');
+    }
     return (
         <div>
             <Box 
@@ -21,7 +28,8 @@ const AddTaskFrom = () => {
                     aria-label="delete"
                     color="secondary"
                     variant="contained"
-                    onClick={() => setOpen(true)}
+                    onClick={gotoNewRout}
+                    // onClick={() => setOpen(true)}
                     sx={{
                         p: 5,
                         border: '1px solid #9C27B0'
