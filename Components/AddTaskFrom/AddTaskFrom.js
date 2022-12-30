@@ -34,7 +34,7 @@ const AddTaskFrom = () => {
                         p: 5,
                         border: '1px solid #9C27B0'
                     }}
-                    className='bg-gray-300'
+                    className=' bg-gray-300'
 
                 >
                     <Add sx={{ fontSize: 100 }}></Add>
